@@ -16,14 +16,19 @@ class App:
             )
         self.button.pack(side=BOTTOM)
 
-        self.hi_there = Button(frame, text="<<", command=self.go_left)
-        self.hi_there.pack(side=LEFT)
+        self.question = Button(
+            frame, text ="question", relief=RAISED, bitmap="question"\
+            , command=self._help_)
+        self.question.pack()
 
-        self.hi_there = Button(frame, text="MODE", command=self.ch_mode)
-        self.hi_there.pack(side=LEFT)
+        self.left_sign = Button(frame, text="<<", command=self.go_left)
+        self.left_sign.pack(side=LEFT)
+
+        self.mode_sel = Button(frame, text="MODE", command=self.ch_mode)
+        self.mode_sel.pack(side=LEFT)
         
-        self.hi_there = Button(frame, text=">>", command=self.go_right)
-        self.hi_there.pack(side=LEFT)
+        self.right_sign = Button(frame, text=">>", command=self.go_right)
+        self.right_sign.pack(side=LEFT)
 
     def go_left(self):
         print "Previous. . ."
@@ -31,22 +36,22 @@ class App:
         print "Next. . ."
     def ch_mode(self):
         if self.status == 0:
-            print "Hair mode"
+            print "Top mode"
             self.status = 1
         elif self.status == 1:
-            print "Top mode"
+            print "Bottom mode"
             self.status = 2
         elif self.status == 2:
-            print "Bottom mode"
+            print "Accessory mode"
             self.status = 3
         elif self.status == 3:
-            print "Accessory mode"
+            print "Hair mode"
             self.status = 0
+    def _help_(self):
+        print "Select Mode and click \"<<\" or \">>\" to customize your avatar."
                  
 
 root = Tk()
-
 app = App(root)
-
 root.mainloop()
 root.destroy()
