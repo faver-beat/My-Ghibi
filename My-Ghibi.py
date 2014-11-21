@@ -4,33 +4,43 @@ Kanokpol Ninpet & Pisit Triangkul
 '''
 from Tkinter import *
 import tkMessageBox
+import tkSimpleDialog
 
 class App:
     def __init__(self, master):
         '''Initial point'''
         
-        w = Canvas(master, width=200, height=200)
-        w.pack()
-        w.create_rectangle(0, 200, 200, 0, fill="white")
-
-        frame = Frame(master)
-        frame.pack()
+        frame1 = Frame(master)
+        frame1.pack(side=RIGHT)
         self.status = 0
 
+        frame2 = Frame(master)
+        frame2.pack(side=LEFT)
+        self.status = 0
+
+        self.create_canvas = Button(
+            frame2, text="CreateCanvas", command=self.cre_canvas
+            )
+        self.create_canvas.pack()
+        
         self.question = Button(
-            frame, text ="question", relief=RAISED, bitmap="question"\
+            frame2, text="question", relief=RAISED, bitmap="question"\
             , command=self._help_)
         self.question.pack()
 
-        self.left_sign = Button(frame, text="<<", command=self.go_left)
+        self.left_sign = Button(frame2, text="<<", command=self.go_left)
         self.left_sign.pack(side=LEFT)
 
-        self.mode_sel = Button(frame, text="MODE", command=self.ch_mode)
+        self.mode_sel = Button(frame2, text="MODE", command=self.ch_mode)
         self.mode_sel.pack(side=LEFT)
         
-        self.right_sign = Button(frame, text=">>", command=self.go_right)
+        self.right_sign = Button(frame2, text=">>", command=self.go_right)
         self.right_sign.pack(side=LEFT)
 
+    def cre_canvas(self):
+        dialog = MyDialog(root)
+        canvas = Canvas(frame1, width=width.apply(), heigth=heigth.apply())
+        canvas.pack()
     def go_left(self):
         '''To previous selection'''
         print "Previous. . ."
@@ -53,9 +63,26 @@ class App:
             self.status = 0
     def _help_(self):
         tkMessageBox.showinfo("Tutorial", "Select Mode and click \"<<\" or \">>\" to customize your avatar.")
-                 
+
+class MyDialog(tkSimpleDialog.Dialog):
+
+    def body(self, master):
+
+        Label(master, text="Width:").grid(row=0)
+        Label(master, text="Heigth:").grid(row=1)
+
+        self.e1 = Entry(master)
+        self.e2 = Entry(master)
+
+        self.e1.grid(row=0, column=1)
+        self.e2.grid(row=1, column=1)
+        return self.e1
+
+    def apply(self):
+        width = int(self.e1.get())
+        heigth = int(self.e2.get())
+        return width, heigth
 
 root = Tk()
-root.geometry("%dx%d+%d+%d" % (800, 300, 0, 0))
 app = App(root)
 root.mainloop()
