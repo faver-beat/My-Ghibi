@@ -8,6 +8,10 @@ import tkMessageBox
 class App:
     def __init__(self, master):
         '''Initial point'''
+        
+        w = Canvas(master, width=200, height=200)
+        w.pack()
+        w.create_rectangle(0, 200, 200, 0, fill="white")
 
         frame = Frame(master)
         frame.pack()
