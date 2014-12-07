@@ -48,15 +48,15 @@ class App:
         self.head_mn = ImageTk.PhotoImage(file="image\head_mn.png")
         self.rgt = ImageTk.PhotoImage(file="image\sign_right.png")
         self.lft = ImageTk.PhotoImage(file="image\sign_left.png")
-        head_mn = canvas.create_image(75, 135, image=self.head_mn)
-        head_rgt = canvas.create_image(75, 135, image=self.rgt)
-        head_lft = canvas.create_image(75, 135, image=self.lft)
+        head_mn = canvas.create_image(75, 125, image=self.head_mn)
+        head_rgt = canvas.create_image(75, 125, image=self.rgt)
+        head_lft = canvas.create_image(75, 125, image=self.lft)
         
         #Hair Menu#
         self.hair_mn = ImageTk.PhotoImage(file="image\hair_mn.png")
-        head_mn = canvas.create_image(75, 250, image=self.hair_mn)
-        head_rgt = canvas.create_image(75, 250, image=self.rgt)
-        head_lft = canvas.create_image(75, 250, image=self.lft)
+        head_mn = canvas.create_image(75, 240, image=self.hair_mn)
+        head_rgt = canvas.create_image(75, 240, image=self.rgt)
+        head_lft = canvas.create_image(75, 240, image=self.lft)
 
         #Body Menu#
         self.body_mn = ImageTk.PhotoImage(file="image\\body_mn.png")
