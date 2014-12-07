@@ -46,23 +46,27 @@ class App:
         canvas.pack()
         #Head menu#
         self.head_mn = ImageTk.PhotoImage(file="image\head_mn.png")
-        self.rgt = ImageTk.PhotoImage(file="image\sign_right.png")
-        self.lft = ImageTk.PhotoImage(file="image\sign_left.png")
+        self.head_rgt = ImageTk.PhotoImage(file="image\sign_right.png")
+        self.head_lft = ImageTk.PhotoImage(file="image\sign_left.png")
         head_mn = canvas.create_image(75, 125, image=self.head_mn)
-        head_rgt = canvas.create_image(75, 125, image=self.rgt)
-        head_lft = canvas.create_image(75, 125, image=self.lft)
+        head_rgt = canvas.create_image(75, 125, image=self.head_rgt)
+        head_lft = canvas.create_image(75, 125, image=self.head_lft)
         
         #Hair Menu#
         self.hair_mn = ImageTk.PhotoImage(file="image\hair_mn.png")
-        head_mn = canvas.create_image(75, 240, image=self.hair_mn)
-        head_rgt = canvas.create_image(75, 240, image=self.rgt)
-        head_lft = canvas.create_image(75, 240, image=self.lft)
+        self.hair_rgt = ImageTk.PhotoImage(file="image\sign_right.png")
+        self.hair_lft = ImageTk.PhotoImage(file="image\sign_left.png")
+        hair_mn = canvas.create_image(75, 240, image=self.hair_mn)
+        hair_rgt = canvas.create_image(75, 240, image=self.hair_rgt)
+        hair_lft = canvas.create_image(75, 240, image=self.hair_lft)
 
         #Body Menu#
         self.body_mn = ImageTk.PhotoImage(file="image\\body_mn.png")
-        head_mn = canvas.create_image(75, 355, image=self.body_mn)
-        head_rgt = canvas.create_image(75, 355, image=self.rgt)
-        head_lft = canvas.create_image(75, 355, image=self.lft)
+        self.body_rgt = ImageTk.PhotoImage(file="image\sign_right.png")
+        self.body_lft = ImageTk.PhotoImage(file="image\sign_left.png")
+        body_mn = canvas.create_image(75, 355, image=self.body_mn)
+        body_rgt = canvas.create_image(75, 355, image=self.body_rgt)
+        body_lft = canvas.create_image(75, 355, image=self.body_lft)
         
 root = Tk()
 root.title("My Ghibi")
