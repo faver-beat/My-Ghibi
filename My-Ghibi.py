@@ -79,6 +79,13 @@ class App:
         hr_rgt = Button(hair_f, image=self.rgt)
         hr_rgt.pack(side=LEFT)
 
+        #Random
+        rdm_btn = Frame(frame1)
+        rdm_btn.pack(side=TOP)
+        self.rdm = ImageTk.PhotoImage(file="image\\rdm.png")
+        rdm = Label(rdm_btn, image=self.rdm)
+        rdm.pack(side=LEFT)
+
         
 root = Tk()
 root.title("My Ghibi")
