@@ -16,7 +16,7 @@ class App:
         frame2.pack(side=RIGHT)
         status = 0
 
-        frame1 = Frame(master)
+        frame1 = Frame(master, borderwidth=2, width=100)
         frame1.pack(side=LEFT)
         status = 0
         menubar = Menu(root)
@@ -40,33 +40,45 @@ class App:
         img1 = canvas.create_image(250, 150, image=self.img)
         img2 = canvas.create_image(250, 200, image=self.img)
 
-        canvas = Canvas(
-            frame1, bg="white", width=150, height=500
-            )
         canvas.pack()
-        #Head menu#
-        self.head_mn = ImageTk.PhotoImage(file="image\head_mn.png")
-        self.head_rgt = ImageTk.PhotoImage(file="image\sign_right.png")
-        self.head_lft = ImageTk.PhotoImage(file="image\sign_left.png")
-        head_mn = canvas.create_image(75, 125, image=self.head_mn)
-        head_rgt = canvas.create_image(75, 125, image=self.head_rgt)
-        head_lft = canvas.create_image(75, 125, image=self.head_lft)
-        
-        #Hair Menu#
-        self.hair_mn = ImageTk.PhotoImage(file="image\hair_mn.png")
-        self.hair_rgt = ImageTk.PhotoImage(file="image\sign_right.png")
-        self.hair_lft = ImageTk.PhotoImage(file="image\sign_left.png")
-        hair_mn = canvas.create_image(75, 240, image=self.hair_mn)
-        hair_rgt = canvas.create_image(75, 240, image=self.hair_rgt)
-        hair_lft = canvas.create_image(75, 240, image=self.hair_lft)
 
-        #Body Menu#
+        #Left and Right Button
+        self.rgt = ImageTk.PhotoImage(file="image\sign_right.png")
+        self.lft = ImageTk.PhotoImage(file="image\sign_left.png")
+
+        #Head menu
+        head_f = Frame(frame1)
+        head_f.pack(side=TOP)
+        self.head_mn = ImageTk.PhotoImage(file="image\head_mn.png")
+        hd_lft = Button(head_f, image=self.lft)
+        hd_lft.pack(side=LEFT)
+        hd_mn = Label(head_f, image=self.head_mn)
+        hd_mn.pack(side=LEFT)
+        hd_rgt = Button(head_f, image=self.rgt)
+        hd_rgt.pack(side=LEFT)
+
+        #Body Menu
+        body_f = Frame(frame1)
+        body_f.pack(side=TOP)
         self.body_mn = ImageTk.PhotoImage(file="image\\body_mn.png")
-        self.body_rgt = ImageTk.PhotoImage(file="image\sign_right.png")
-        self.body_lft = ImageTk.PhotoImage(file="image\sign_left.png")
-        body_mn = canvas.create_image(75, 355, image=self.body_mn)
-        body_rgt = canvas.create_image(75, 355, image=self.body_rgt)
-        body_lft = canvas.create_image(75, 355, image=self.body_lft)
+        hr_lft = Button(body_f, image=self.lft)
+        hr_lft.pack(side=LEFT)
+        hr_mn = Label(body_f, image=self.body_mn)
+        hr_mn.pack(side=LEFT)
+        hr_rgt = Button(body_f, image=self.rgt)
+        hr_rgt.pack(side=LEFT)
+
+        #Hair Menu
+        hair_f = Frame(frame1)
+        hair_f.pack(side=TOP)
+        self.hair_mn = ImageTk.PhotoImage(file="image\hair_mn.png")
+        hr_lft = Button(hair_f, image=self.lft)
+        hr_lft.pack(side=LEFT)
+        hr_mn = Label(hair_f, image=self.hair_mn)
+        hr_mn.pack(side=LEFT)
+        hr_rgt = Button(hair_f, image=self.rgt)
+        hr_rgt.pack(side=LEFT)
+
         
 root = Tk()
 root.title("My Ghibi")
