@@ -3,15 +3,45 @@ PSIT Project: My Ghibi
 Kanokpol Ninpet & Pisit Triangkul
 '''
 from Tkinter import *
-import tkMessageBox
-import tkSimpleDialog
 import ImageTk
-
+import random
 class App:
     def __init__(self, master):
         '''Initial point'''
+        self.num_bd = 1
+        self.num_hr = 1
+        self.num_hd = 1
+        
         def hello():
             print "hello!"
+            
+        def body_changer(side):
+            self.num_bd += side
+            if self.num_bd == 0:
+                self.num_bd = 5
+            elif self.num_bd == 6:
+                self.num_bd = 1
+            self.bd = ImageTk.PhotoImage(file="image/body/"+str(self.num_bd)+".png")
+            self.canvas.itemconfig(self.s_bd, image=self.bd)
+            
+        def hair_changer(side):
+            self.num_hr += side
+            if self.num_hr == 0:
+                self.num_hr = 5
+            elif self.num_hr == 6:
+                self.num_hr = 1
+            self.hr = ImageTk.PhotoImage(file="image/hair/"+str(self.num_hr)+".png")
+            self.canvas.itemconfig(self.s_hr, image=self.hr)
+            
+        def head_changer(side):
+            self.num_hd += side
+            if self.num_hd == 0:
+                self.num_hd = 5
+            elif self.num_hd == 6:
+                self.num_hd = 1
+            self.hd = ImageTk.PhotoImage(file="image/head/"+str(self.num_hd)+".png")
+            self.canvas.itemconfig(self.s_hd, image=self.hd)
+            
         frame2 = Frame(master)
         frame2.pack(side=RIGHT)
         status = 0
@@ -31,62 +61,61 @@ class App:
         menubar.add_cascade(label="File", menu=filemenu)
         root.config(menu=menubar)
 
-        canvas = Canvas(
+        self.canvas = Canvas(
             frame2, bg="white", width=500, height=500
             )
-        canvas.pack()
-
-        self.img = ImageTk.PhotoImage(file="image\Ok-icon.png")
-        img1 = canvas.create_image(250, 150, image=self.img)
-        img2 = canvas.create_image(250, 200, image=self.img)
-
-        canvas.pack()
+        self.canvas.pack()
 
         #Left and Right Button
-        self.rgt = ImageTk.PhotoImage(file="image\sign_right.png")
-        self.lft = ImageTk.PhotoImage(file="image\sign_left.png")
+        self.rgt = ImageTk.PhotoImage(file="image/button_right.png")
+        self.lft = ImageTk.PhotoImage(file="image/button_left.png")
 
-        #Head menu
-        head_f = Frame(frame1)
-        head_f.pack(side=TOP)
-        self.head_mn = ImageTk.PhotoImage(file="image\head_mn.png")
-        hd_lft = Button(head_f, image=self.lft)
-        hd_lft.pack(side=LEFT)
-        hd_mn = Label(head_f, image=self.head_mn)
-        hd_mn.pack(side=LEFT)
-        hd_rgt = Button(head_f, image=self.rgt)
-        hd_rgt.pack(side=LEFT)
+        #Random
+        self.rdm = ImageTk.PhotoImage(file="image/rdm.png")
+        random = Button(frame1, image=self.rdm)
+        random.pack()
 
         #Body Menu
         body_f = Frame(frame1)
         body_f.pack(side=TOP)
-        self.body_mn = ImageTk.PhotoImage(file="image\\body_mn.png")
-        hr_lft = Button(body_f, image=self.lft)
-        hr_lft.pack(side=LEFT)
-        hr_mn = Label(body_f, image=self.body_mn)
-        hr_mn.pack(side=LEFT)
-        hr_rgt = Button(body_f, image=self.rgt)
-        hr_rgt.pack(side=LEFT)
+        self.body_mn = ImageTk.PhotoImage(file="image/body_mn.png")
+        self.bd = ImageTk.PhotoImage(file="image/body/"+str(self.num_bd)+".png")
+        self.s_bd = self.canvas.create_image(250, 250, image=self.bd)
+        bd_lft = Button(body_f, image=self.lft, command=lambda: body_changer(-1))
+        bd_lft.pack(side=LEFT)
+        bd_mn = Label(body_f, image=self.body_mn)
+        bd_mn.pack(side=LEFT)
+        bd_rgt = Button(body_f, image=self.rgt, command=lambda: body_changer(1))
+        bd_rgt.pack(side=LEFT)
+
+        #Head menu
+        num_hd = 1
+        head_f = Frame(frame1)
+        head_f.pack(side=TOP)
+        self.head_mn = ImageTk.PhotoImage(file="image/head_mn.png")
+        self.hd = ImageTk.PhotoImage(file="image/head/"+str(num_hd)+".png")
+        self.s_hd = self.canvas.create_image(250, 250, image=self.hd)
+        hd_lft = Button(head_f, image=self.lft, command=lambda: head_changer(-1))
+        hd_lft.pack(side=LEFT)
+        hd_mn = Label(head_f, image=self.head_mn)
+        hd_mn.pack(side=LEFT)
+        hd_rgt = Button(head_f, image=self.rgt, command=lambda: head_changer(1))
+        hd_rgt.pack(side=LEFT)
 
         #Hair Menu
+        num_hr = 1
         hair_f = Frame(frame1)
         hair_f.pack(side=TOP)
-        self.hair_mn = ImageTk.PhotoImage(file="image\hair_mn.png")
-        hr_lft = Button(hair_f, image=self.lft)
+        self.hair_mn = ImageTk.PhotoImage(file="image/hair_mn.png")
+        self.hr = ImageTk.PhotoImage(file="image/hair/"+str(num_hr)+".png")
+        self.s_hr = self.canvas.create_image(250, 250, image=self.hr)
+        hr_lft = Button(hair_f, image=self.lft, command=lambda: hair_changer(-1))
         hr_lft.pack(side=LEFT)
         hr_mn = Label(hair_f, image=self.hair_mn)
         hr_mn.pack(side=LEFT)
-        hr_rgt = Button(hair_f, image=self.rgt)
+        hr_rgt = Button(hair_f, image=self.rgt, command=lambda: hair_changer(1))
         hr_rgt.pack(side=LEFT)
 
-        #Random
-        rdm_btn = Frame(frame1)
-        rdm_btn.pack(side=TOP)
-        self.rdm = ImageTk.PhotoImage(file="image\\rdm.png")
-        rdm = Label(rdm_btn, image=self.rdm)
-        rdm.pack(side=LEFT)
-
-        
 root = Tk()
 root.title("My Ghibi")
 app = App(root)
