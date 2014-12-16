@@ -42,13 +42,13 @@ class App:
             self.canvas.itemconfig(self.s_hd, image=self.hd)
 
         def do_random():
-            import random
+            from random import choice
             num_hair = [i+1 for i in xrange(8)]
             num_head = [i+1 for i in xrange(5)]
             num_body = [i+1 for i in xrange(5)]
-            self.bd = ImageTk.PhotoImage(file="image/body/"+str(random.choice(num_body))+".png")
-            self.hr = ImageTk.PhotoImage(file="image/hair/"+str(random.choice(num_hair))+".png")
-            self.hd = ImageTk.PhotoImage(file="image/head/"+str(random.choice(num_head))+".png")
+            self.bd = ImageTk.PhotoImage(file="image/body/"+str(choice(num_body))+".png")
+            self.hr = ImageTk.PhotoImage(file="image/hair/"+str(choice(num_hair))+".png")
+            self.hd = ImageTk.PhotoImage(file="image/head/"+str(choice(num_head))+".png")
             self.canvas.itemconfig(self.s_bd, image=self.bd)
             self.canvas.itemconfig(self.s_hr, image=self.hr)
             self.canvas.itemconfig(self.s_hd, image=self.hd)
