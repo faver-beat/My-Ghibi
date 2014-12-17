@@ -3,7 +3,7 @@ PSIT Project: My Ghibi
 Kanokpol Ninpet & Pisit Triangkul
 '''
 from Tkinter import *
-import ImageTk
+import ImageTk, Image, ImageDraw, tkFileDialog
 class App:
     def __init__(self, master):
         '''Initial point'''
@@ -11,8 +11,21 @@ class App:
         self.num_hr = 1
         self.num_hd = 1
         
-        def hello():
-            print "hello!"
+        def save():
+            image1 = Image.new("RGB", (500, 500), "white")
+            draw = ImageDraw.Draw(image1)
+            bd = Image.open("image/body/"+str(self.num_bd)+".png")
+            hd = Image.open("image/head/"+str(self.num_hd)+".png")
+            hr = Image.open("image/hair/"+str(self.num_hr)+".png")
+            image1.paste(bd, (0, 0), bd)
+            image1.paste(hd, (0, 0), hd)
+            image1.paste(hr, (0, 0), hr)
+            filename = tkFileDialog.asksaveasfilename(defaultextension='.jpg', filetypes=[("JPEG",".jpg")])
+            try:
+                image1.save(filename)
+            except:
+                pass
+                
             
         def body_changer(side):
             self.num_bd += side
@@ -43,12 +56,12 @@ class App:
 
         def do_random():
             from random import choice
-            num_hair = [i+1 for i in xrange(8)]
-            num_head = [i+1 for i in xrange(5)]
-            num_body = [i+1 for i in xrange(5)]
-            self.bd = ImageTk.PhotoImage(file="image/body/"+str(choice(num_body))+".png")
-            self.hr = ImageTk.PhotoImage(file="image/hair/"+str(choice(num_hair))+".png")
-            self.hd = ImageTk.PhotoImage(file="image/head/"+str(choice(num_head))+".png")
+            self.num_hr = choice([i+1 for i in xrange(8)])
+            self.num_hd = choice([i+1 for i in xrange(5)])
+            self.num_bd = choice([i+1 for i in xrange(5)])
+            self.bd = ImageTk.PhotoImage(file="image/body/"+str(self.num_hd)+".png")
+            self.hr = ImageTk.PhotoImage(file="image/hair/"+str(self.num_hr)+".png")
+            self.hd = ImageTk.PhotoImage(file="image/head/"+str(self.num_hd)+".png")
             self.canvas.itemconfig(self.s_bd, image=self.bd)
             self.canvas.itemconfig(self.s_hr, image=self.hr)
             self.canvas.itemconfig(self.s_hd, image=self.hd)
@@ -64,9 +77,7 @@ class App:
 
         menu = Menu(root, tearoff=0)
         filemenu = Menu(menubar, tearoff=0)
-        filemenu.add_command(label="New", command=hello)
-        filemenu.add_command(label="Open", command=hello)
-        filemenu.add_command(label="Save", command=hello)
+        filemenu.add_command(label="Save", command=save)
         filemenu.add_separator()
         filemenu.add_command(label="Exit", command=root.quit)
         menubar.add_cascade(label="File", menu=filemenu)
